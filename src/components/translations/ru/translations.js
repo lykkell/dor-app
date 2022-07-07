@@ -1,0 +1,27 @@
+export const TRANSLATIONS_RU = {
+    welcome:"Добрий день",
+    Dashboard:"Главное меню",
+    Platforms: "Учебніе платформі",
+    Likars: "Врачи",
+    Courses: "Семинары",
+    CrCommissions: "Атестационные комиссии",
+    YourUser: "Учетная запись",
+    Login: "Логин",
+    Password: "Пароль",
+    eMail: "e-mail",
+    Phone:"Телефон",
+    Registrate: "Зарегестрироваться",
+    User:"Пользователь",
+    FirstName: "Имя",
+    SecondName:"Фамилия",
+    Surname: "Отчество",
+    Submit: "Подтвердить",
+    Forget: "Забыли Ваш пароль?",
+    Note:"Дополнительная информация",
+    Close:"Закрить",
+    isEmpty: "Заполните поле",
+    minLengthError: "Слишком короткое название! ",
+    maxLengthError: "Слишком много символов!",
+    emailError: "Некорректний email!"
+
+   };

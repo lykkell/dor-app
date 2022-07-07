@@ -1,5 +1,39 @@
 .App {
   text-align: center;
+  position: relative;
+}
+.App-logo {
+  height: 100px;
+  width: 100px;
+  pointer-events: none;
+}
+.App-link {
+  color: #a8ea10;
+}
+.Dashboard-main {
+  margin:10px;
+  min-height: 50vh;
+  background-color:#328bf1;
+}
+
+.Adv {
+  margin: 10px;
+  min-height: 45vh;
+  background-color:cadetblue;
+}
+
+.Dashboard-main-btn {
+  margin: 10px;
+}
+/* .btn {
+  background-color: rgb(181, 245, 4);
+  border-bottom-color: #060aca;
+  color: #060aca;
+} */
+
+
+/* .App {
+  text-align: center;
 }
 
 .App-logo {
@@ -36,3 +70,4 @@
     transform: rotate(360deg);
   }
 }
+ */
