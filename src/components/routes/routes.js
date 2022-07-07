@@ -3,7 +3,8 @@ import { Route, Routes } from "react-router-dom";
 
 import App from '../app-dor';
 
-import UserCard from '../user-card';
+import UserCard from '../user-card/user-card';
+import CreateUser from '../user-card/create-user';
 import UsersList from '../users-list';
 import CrtList from '../crtlist';
 import Certificate from '../certificate';
@@ -25,6 +26,7 @@ const Rots = () => {
           <Route path="/create" element={<Create />} /> */}
           <Route exact path="/" element={<App />} />
            <Route path="usercard" element={<UserCard />} />
+           <Route path="usercreate" element={<CreateUser />} />
            <Route path="userslist" element={<UsersList />} />
            <Route path="platform" element={<Platform />} />
            <Route path="plflist" element={<PlfList />} />

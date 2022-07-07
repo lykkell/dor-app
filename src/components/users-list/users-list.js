@@ -38,7 +38,7 @@ const UsersList = () =>  {
                 </tbody>
                 <div className="navbar navbar-dark bg-light justify-content-between">
                     <Link to='/' className="btn btn-primary">{t('Dashboard')}</Link>
-                    <Link to='/usercard' type='button' className="btn btn-success btn-lg">{t('Add new')}</Link>
+                    <Link to='/usercreate' type='button' className="btn btn-success btn-lg">{t('Add new')}</Link>
                 </div>
             </table>
         </div>
