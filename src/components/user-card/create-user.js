@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function CreateUser() {
-    const [form, setForm] = useState({
+  const { t } = useTranslation();  
+  const [form, setForm] = useState({
       user_status: '',
       user_update: '',
       user_level: "",
@@ -207,6 +210,7 @@ function updateForm(value) {
            value="Create new user"
            className="btn btn-primary"
          />
+          <Link to='/' className="btn btn-primary">{t('Dashboard')}</Link>
        </div>
      </form>
    </div>
