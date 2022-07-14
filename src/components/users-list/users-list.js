@@ -15,7 +15,7 @@ const User = (props) => (
    <td>{props.record.user_login}</td>
    <td>{props.record.user_pass}</td>
    <td>
-     <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
+     <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link>
      <button className="btn btn-link"
        onClick={() => {props.deleteRecord(props.record._id);}}>Delete</button>
    </td>
@@ -69,19 +69,19 @@ export default function RecordList() {
   return (
     <div>
       <h3>List of users</h3>
-      <table className="table table-striped" style={{ marginTop: 20 }}>
+      <table  style={{ marginTop: 20}}>
         <thead>
           <tr>
             <th>{t('Status')}</th>
-            <th scope="col">{t('Date active')}</th>
-            <th scope="col">{t('Level')}</th>
-            <th scope="col">{t('UserName')}</th>
-            <th scope="col">{t('FirstName')}</th>
-            <th scope="col">{t('SecondName')}</th>
-            <th scope="col">{t('UserSpecialty')}</th>
-            <th scope="col">{t('SurName')}</th>
-            <th scope="col">{t('Login')}</th>
-            <th scope="col">{t('Password')}</th>
+            <th>{t('Date active')}</th>
+            <th>{t('Level')}</th>
+            <th>{t('UserName')}</th>
+            <th>{t('FirstName')}</th>
+            <th>{t('SecondName')}</th>
+            <th>{t('UserSpecialty')}</th>
+            <th>{t('SurName')}</th>
+            <th>{t('Login')}</th>
+            <th>{t('Password')}</th>
           </tr>
         </thead>
         <tbody>{UsersList()}</tbody>

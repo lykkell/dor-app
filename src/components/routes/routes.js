@@ -5,6 +5,7 @@ import App from '../app-dor';
 
 import UserCard from '../user-card/user-card';
 import CreateUser from '../user-card/create-user';
+import Edit from '../user-card/edit-user';
 import UsersList from '../users-list';
 import CrtList from '../crtlist';
 import Certificate from '../certificate';
@@ -27,6 +28,7 @@ const Rots = () => {
           <Route exact path="/" element={<App />} />
            <Route path="usercard" element={<UserCard />} />
            <Route path="usercreate" element={<CreateUser />} />
+           <Route path="useredit/:id" element={<Edit />} />
            <Route path="userslist" element={<UsersList />} />
            <Route path="platform" element={<Platform />} />
            <Route path="plflist" element={<PlfList />} />
