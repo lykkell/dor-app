@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
  
 export default function Edit() {
+    const { t } = useTranslation();  
  const [form, setForm] = useState({
     user_status: "",
     user_update: "",
@@ -37,6 +41,7 @@ export default function Edit() {
      }
  
      setForm(record);
+     console.log(record);
    }
  
    fetchData();
@@ -75,7 +80,7 @@ export default function Edit() {
      },
    });
  
-   navigate("/");
+   navigate("-1");
  }
  
  // This following section will display the form that takes input from the user to update the data.
@@ -229,9 +234,9 @@ export default function Edit() {
            value="Update Record"
            className="btn btn-primary"
          />
+         <Link to='/' className="btn btn-primary">{t('Dashboard')}</Link>
        </div>
      </form>
    </div>
  );
 }
-Edit();
