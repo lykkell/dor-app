@@ -51,7 +51,9 @@ recordRoutes.route("/record/add").post(function (req, response) {
     user_login: req.body.user_login,
     user_pass: req.body.user_pass,
  };
- db_connect.collection("users").insertOne(myobj, function (err, res) {
+ db_connect
+ .collection("users")
+ .insertOne(myobj, function (err, res) {
    if (err) throw err;
    response.json(res);
  });
@@ -74,14 +76,22 @@ recordRoutes.route("/update/:id").post(function (req, response) {
     user_login: req.body.user_login,
     user_pass: req.body.user_pass,   
    }, 
-  }
+  };
+  db_connect
+  .collection("users")
+  .UpdateOne(myquery, newvalues, function (err, res) {
+    if (err) throw err;
+    response.json(res);
+  });
 });
  
 // This section will help you delete a record
 recordRoutes.route("/:id").delete((req, response) => {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId( req.params.id )};
- db_connect.collection("users").deleteOne(myquery, function (err, obj) {
+ db_connect
+ .collection("users")
+ .deleteOne(myquery, function (err, obj) {
    if (err) throw err;
    console.log("1 document deleted");
    response.json(obj);

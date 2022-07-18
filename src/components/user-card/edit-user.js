@@ -39,15 +39,13 @@ export default function Edit() {
        navigate(-1);
        return;
      }
- 
      setForm(record);
-     console.log(record);
    }
- 
    fetchData();
- 
    return;
- }, [params.id, navigate]);
+ },
+  [params.id, navigate]);
+ 
  
  // These methods will update the state properties.
  function updateForm(value) {
@@ -58,7 +56,10 @@ export default function Edit() {
  
  async function onSubmit(e) {
    e.preventDefault();
-   const editedPerson = {
+
+  //  const editedUser = { ...form };
+
+   const editedUser = {
     user_status: form.user_status,
     user_update: form.user_update,
     user_level: form.user_level,
@@ -70,17 +71,23 @@ export default function Edit() {
     user_login: form.user_login,
     user_pass: form.user_pass,
    };
- 
+  //  console.log('editedUser:', params.id, editedUser );
+
    // This will send a post request to update the data in the database.
    await fetch(`http://localhost:5000/update/${params.id}`, {
      method: "POST",
-     body: JSON.stringify(editedPerson),
      headers: {
        'Content-Type': 'application/json'
      },
-   });
- 
-   navigate("-1");
+     body: JSON.stringify(editedUser),
+   })
+   .catch(error => {
+    window.alert(error);
+    return;
+  });
+   
+   console.log('posted',params.id,editedUser );
+   navigate(-1);
  }
  
  // This following section will display the form that takes input from the user to update the data.
