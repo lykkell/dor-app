@@ -82,7 +82,6 @@ recordRoutes.route("/update/:id").post(function (req, response) {
   .updateOne(myquery, newvalues, function (err, res) {
     if (err) throw err;
     response.json(res);
-    res.status(500).json('oh noes!');
   });
 });
  
