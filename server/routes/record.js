@@ -61,7 +61,7 @@ recordRoutes.route("/record/add").post(function (req, response) {
  
 // This section will help you update a record by id.
 recordRoutes.route("/update/:id").post(function (req, response) {
- let db_connect = dbo.getDb(); 
+ let db_connect = dbo.getDb("dor"); 
  let myquery = { _id: ObjectId( req.params.id )}; 
  let newvalues = {   
    $set: {     
@@ -79,9 +79,10 @@ recordRoutes.route("/update/:id").post(function (req, response) {
   };
   db_connect
   .collection("users")
-  .UpdateOne(myquery, newvalues, function (err, res) {
+  .updateOne(myquery, newvalues, function (err, res) {
     if (err) throw err;
     response.json(res);
+    res.status(500).json('oh noes!');
   });
 });
  
