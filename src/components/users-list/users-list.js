@@ -4,16 +4,17 @@ import { useTranslation } from "react-i18next";
  
 const User = (props) => (
  <tr>
-   <td>{props.record.user_status}</td>
-   <td>{props.record.user_update}</td>
-   <td>{props.record.user_level}</td>
-   <td>{props.record.user_name}</td>
-   <td>{props.record.user_firstname}</td>
-   <td>{props.record.user_secondname}</td>
-   <td>{props.record.user_surname}</td>
-   <td>{props.record.user_specialty}</td>
-   <td>{props.record.user_login}</td>
-   <td>{props.record.user_pass}</td>
+    <tr>{props.record._id}</tr>
+    <td>{props.record.user_status}</td>
+    <td>{props.record.user_update}</td>
+    <td>{props.record.user_level}</td>
+    <td>{props.record.user_name}</td>
+    <td>{props.record.user_firstname}</td>
+    <td>{props.record.user_secondname}</td>
+    <td>{props.record.user_surname}</td>
+    <td>{props.record.user_specialty}</td>
+    <td>{props.record.user_login}</td>
+    <td>{props.record.user_pass}</td>
    <td>
      <Link className="btn btn-link" to={`/useredit/${props.record._id}`}>Edit</Link>
      <button className="btn btn-link"
@@ -72,6 +73,7 @@ export default function RecordList() {
       <table  style={{ marginTop: 20}}>
         <thead>
           <tr>
+            <th>{t('User ID')}</th>
             <th>{t('Status')}</th>
             <th>{t('Date active')}</th>
             <th>{t('Level')}</th>
