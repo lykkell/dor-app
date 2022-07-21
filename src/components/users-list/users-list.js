@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
  
 const User = (props) => (
  <tr>
+  <td>{props.record._id}</td>
    <td>{props.record.user_status}</td>
    <td>{props.record.user_update}</td>
    <td>{props.record.user_level}</td>
@@ -29,7 +30,7 @@ export default function RecordList() {
     // This method fetches the records from the database.
     useEffect(() => {
       async function getRecords() {
-        const response = await fetch(`http://localhost:5000/record/`);
+        const response = await fetch(`http://localhost:5000/record/user/`);
     
         if (!response.ok) {
           const message = `An error occurred: ${response.statusText}`;
@@ -48,7 +49,7 @@ export default function RecordList() {
     
     // This method will delete a record
     async function deleteRecord(id) {
-      await fetch(`http://localhost:5000/${id}`, {
+      await fetch(`http://localhost:5000/record/user/${id}`, {
         method: "DELETE"
       });
     
@@ -72,6 +73,7 @@ export default function RecordList() {
       <table  style={{ marginTop: 20}}>
         <thead>
           <tr>
+            <th>{t('ID')}</th>
             <th>{t('Status')}</th>
             <th>{t('Date active')}</th>
             <th>{t('Level')}</th>

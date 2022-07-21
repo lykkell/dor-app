@@ -5,7 +5,11 @@ import { useTranslation } from "react-i18next";
 
  
 export default function Edit() {
-    const { t } = useTranslation();  
+  
+  const params = useParams();
+  const navigate = useNavigate();
+  const { t } = useTranslation(); 
+
  const [form, setForm] = useState({
     user_status: "",
     user_update: "",
@@ -19,13 +23,11 @@ export default function Edit() {
     user_pass: "",
     records: [],
  });
- const params = useParams();
- const navigate = useNavigate();
  
- useEffect(() => {
-   async function fetchData() {
+ useEffect(() => { 
+  async function fetchData() {
      const id = params.id.toString();
-     const response = await fetch(`http://localhost:5000/record/${params.id.toString()}`);
+     const response = await fetch(`http://localhost:5000/record/user/${params.id.toString()}`);
  
      if (!response.ok) {
        const message = `An error has occurred: ${response.statusText}`;
@@ -42,6 +44,7 @@ export default function Edit() {
      setForm(record);
    }
    fetchData();
+   
    return;
  },
   [params.id, navigate]);
@@ -57,24 +60,24 @@ export default function Edit() {
  async function onSubmit(e) {
    e.preventDefault();
 
-  //  const editedUser = { ...form };
+   const editedUser = { ...form };
 
-   const editedUser = {
-    user_status: form.user_status,
-    user_update: form.user_update,
-    user_level: form.user_level,
-    user_name: form.user_name,
-    user_firstname: form.user_firstname,
-    user_secondname: form.user_secondname,
-    user_surname: form.user_surname,
-    user_specialty: form.user_specialty,
-    user_login: form.user_login,
-    user_pass: form.user_pass,
-   };
+  //  const editedUser = {
+  //   user_status: form.user_status,
+  //   user_update: form.user_update,
+  //   user_level: form.user_level,
+  //   user_name: form.user_name,
+  //   user_firstname: form.user_firstname,
+  //   user_secondname: form.user_secondname,
+  //   user_surname: form.user_surname,
+  //   user_specialty: form.user_specialty,
+  //   user_login: form.user_login,
+  //   user_pass: form.user_pass,
+  //  };
   //  console.log('editedUser:', params.id, editedUser );
 
    // This will send a post request to update the data in the database.
-   await fetch(`http://localhost:5000/update/${params.id}`, {
+   await fetch(`http://localhost:5000/update/user/${params.id}`, {
      method: "POST",
      headers: {
        'Content-Type': 'application/json'
@@ -86,7 +89,7 @@ export default function Edit() {
     return;
   });
    
-   console.log('posted',params.id,editedUser );
+  //  console.log('posted',params.id,editedUser );
    navigate(-1);
  }
  

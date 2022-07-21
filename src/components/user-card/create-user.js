@@ -33,7 +33,7 @@ function updateForm(value) {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newUser = { ...form };
   
-    await fetch("http://localhost:5000/record/add", {
+    await fetch("http://localhost:5000/record/user/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
