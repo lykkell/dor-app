@@ -7,7 +7,8 @@ const User = (props) => (
     <td>{props.record._id}</td>
     <td>{props.record.user_status}</td>
     <td>{props.record.user_update}</td>
-    <td>{props.record.user_level}</td>
+    {/* <td>{props.record.access.group}</td> */}
+    {/* <td>{props.record.access.level}</td> */}
     <td>{props.record.user_name}</td>
     <td>{props.record.user_firstname}</td>
     <td>{props.record.user_secondname}</td>
@@ -17,6 +18,7 @@ const User = (props) => (
     <td>{props.record.user_pass}</td>
    <td>
      <Link className="btn btn-link" to={`/useredit/${props.record._id}`}>Edit</Link>
+     <Link className="btn btn-link" to={`/access/${props.record._id}`}>Access</Link>
      <button className="btn btn-link"
        onClick={() => {props.deleteRecord(props.record._id);}}>Delete</button>
    </td>
@@ -76,6 +78,7 @@ export default function RecordList() {
             <th>{t('User ID')}</th>
             <th>{t('Status')}</th>
             <th>{t('Date active')}</th>
+            <th>{t('Group')}</th>
             <th>{t('Level')}</th>
             <th>{t('UserName')}</th>
             <th>{t('FirstName')}</th>
@@ -90,7 +93,7 @@ export default function RecordList() {
       </table>
       <div className="navbar navbar-dark bg-light justify-content-between">
             <Link to='/' className="btn btn-primary">{t('Dashboard')}</Link>
-            <Link to='/access' className="btn btn-primary">{t('Access')}</Link>
+            {/* <Link to='/access' className="btn btn-primary">{t('Access')}</Link> */}
             <Link to='/usercreate' type='button' className="btn btn-success btn-lg">{t('Add new')}</Link>
         </div>
     </div>

@@ -40,17 +40,20 @@ recordRoutes.route("/record/:id").get(function (req, res) {
 recordRoutes.route("/record/add").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myobj = {
-    user_ID: req.body._id,
-    user_status: req.body.user_status,
-    user_update: req.body.user_update,
-    user_level: req.body.user_level,
-    user_name: req.body.user_name,
-    user_firstname: req.body.user_firstname,
-    user_secondname: req.body.user_secondname,
-    user_surname: req.body.user_surname,
-    user_specialty: req.body.user_specialty,
-    user_login: req.body.user_login,
-    user_pass: req.body.user_pass,
+  user_ID: req.body._id,
+  user_status: req.body.user_status,
+  user_update: req.body.user_update,
+  access:{
+    group:req.body.group,
+    level:req.body.level,
+  },
+  user_name: req.body.user_name,
+  user_firstname: req.body.user_firstname,
+  user_secondname: req.body.user_secondname,
+  user_surname: req.body.user_surname,
+  user_specialty: req.body.user_specialty,
+  user_login: req.body.user_login,
+  user_pass: req.body.user_pass,  
  };
  db_connect
  .collection("users")
@@ -66,17 +69,20 @@ recordRoutes.route("/update/:id").post(function (req, response) {
  let myquery = { _id: ObjectId( req.params.id )}; 
  let newvalues = {   
    $set: {   
-    user_ID: req.body._id,  
-    user_status: req.body.user_status,
-    user_update: req.body.user_update,
-    user_level: req.body.user_level,
-    user_name: req.body.user_name,
-    user_firstname: req.body.user_firstname,
-    user_secondname: req.body.user_secondname,
-    user_surname: req.body.user_surname,
-    user_specialty: req.body.user_specialty,
-    user_login: req.body.user_login,
-    user_pass: req.body.user_pass,   
+    user_ID: req.body._id,
+  user_status: req.body.user_status,
+  user_update: req.body.user_update,
+  access:{
+    group:req.body.group,
+    level:req.body.level,
+  },
+  user_name: req.body.user_name,
+  user_firstname: req.body.user_firstname,
+  user_secondname: req.body.user_secondname,
+  user_surname: req.body.user_surname,
+  user_specialty: req.body.user_specialty,
+  user_login: req.body.user_login,
+  user_pass: req.body.user_pass,   
    }, 
   };
   db_connect
