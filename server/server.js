@@ -6,7 +6,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(require("./routes/record-user"));
-app.use(require("./routes/record-access"));
+// app.use(require("./routes/_record-access"));
 // get driver connection
 const dbo = require("./db/conn");
  

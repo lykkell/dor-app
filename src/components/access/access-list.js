@@ -6,7 +6,7 @@ const Access = (props) => (
  <tr>
     <td>{props.access._id}</td>
     <td>{props.access.updated}</td>
-    <td>{props.access.user_id}</td>
+    <td>{props.user_id}</td>
     <td>{props.access.group}</td>
     <td>{props.access.level}</td>
     <td>{props.access.login}</td>

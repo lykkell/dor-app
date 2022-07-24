@@ -7,7 +7,7 @@ const User = (props) => (
     <td>{props.record._id}</td>
     <td>{props.record.user_status}</td>
     <td>{props.record.user_update}</td>
-    {/* <td>{props.record.access.group}</td> */}
+    <td>{props.record.group}</td>
     {/* <td>{props.record.access.level}</td> */}
     <td>{props.record.user_name}</td>
     <td>{props.record.user_firstname}</td>

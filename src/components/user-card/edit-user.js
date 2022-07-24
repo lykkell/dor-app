@@ -56,12 +56,13 @@ export default function Edit() {
  
  async function onSubmit(e) {
    e.preventDefault();
+   const myDate= Date();
 
   //  const editedUser = { ...form };
 
    const editedUser = {
     user_status: form.user_status,
-    user_update: form.user_update,
+    user_update: myDate,
     user_level: form.user_level,
     user_name: form.user_name,
     user_firstname: form.user_firstname,

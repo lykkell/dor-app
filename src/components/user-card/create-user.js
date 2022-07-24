@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export default function CreateUser() {
+  const myDate = Date("<YYYY-mm-dd>");
   const { t } = useTranslation();  
   const [form, setForm] = useState({
-    user_status: '',
-    user_update: '',
+    user_status: "",
+    user_update: myDate,
     access: {
       group: "",
       level: "",
@@ -49,8 +50,8 @@ function updateForm(value) {
     });
   
     setForm({  
-      user_status: '',
-      user_update: '',
+      user_status: "",
+      // user_update: myDate,
       access: {
         group: "user",
         level: "userstart",
@@ -81,7 +82,7 @@ function updateForm(value) {
            onChange={(e) => updateForm({ user_status: e.target.value })}
          />
        </div>
-       <div className="form-group">
+       {/* <div className="form-group">
          <label htmlFor="user_update">Last active date</label>
          <input
            type="text"
@@ -90,7 +91,7 @@ function updateForm(value) {
            value={form.user_update}
            onChange={(e) => updateForm({ user_update: e.target.value })}
          />
-       </div>
+       </div> */}
        {/* <div className="form-group">
          <label htmlFor="user_level">User access level</label>
          <input
