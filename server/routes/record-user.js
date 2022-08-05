@@ -66,8 +66,8 @@ recordRoutes.route("/update/:id").post(function (req, response) {
  let newvalues = {   
    $set: {   
     user_status: req.body.user_status,
-    access_group: req.body.access_group,
-    access_level: req.body.access_level,
+    // access_group: req.body.access_group,
+    // access_level: req.body.access_level,
     user_login: req.body.user_login,
     user_pass: req.body.user_pass, 
     user_name: req.body.user_name,

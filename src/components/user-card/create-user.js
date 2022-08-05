@@ -9,10 +9,8 @@ export default function CreateUser() {
   const [form, setForm] = useState({
     user_status: "",
     user_update: myDate,
-    access: {
-      group: "",
-      level: "",
-      },
+    access_group: "user",
+    access_level: "start",
     user_name: "",
     user_firstname: "",
     user_secondname: "",
@@ -52,10 +50,8 @@ function updateForm(value) {
     setForm({  
       user_status: "",
       // user_update: myDate,
-      access: {
-        group: "user",
-        level: "userstart",
-        },
+      // access_group: "user",
+      // access_level: "start",
       user_name: "",
       user_firstname: "",
       user_secondname: "",

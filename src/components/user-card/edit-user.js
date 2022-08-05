@@ -9,8 +9,8 @@ export default function Edit() {
  const [form, setForm] = useState({
     user_status: "",
     user_update: "",
-    access_group: "",
-    access_level: "",
+    // access_group: "",
+    // access_level: "",
     user_name: "",
     user_firstname: "",
     user_secondname: "",
@@ -118,7 +118,7 @@ export default function Edit() {
            onChange={(e) => updateForm({ user_update: e.target.value })}
          />
        </div>
-       <div className="form-group">
+       {/* <div className="form-group">
          <label htmlFor="access_group">access_group: </label>
          <input
            type="text"
@@ -127,8 +127,8 @@ export default function Edit() {
            value={form.access_group}
            onChange={(e) => updateForm({ access_group: e.target.value })}
          />
-       </div>
-       <div className="form-group">
+       </div> */}
+       {/* <div className="form-group">
          <label htmlFor="access_level">access_level: </label>
          <input
            type="text"
@@ -137,7 +137,7 @@ export default function Edit() {
            value={form.access_level}
            onChange={(e) => updateForm({ access_level: e.target.value })}
          />
-       </div>
+       </div> */}
        <div className="form-group">
          <label htmlFor="user_name">user_name: </label>
          <input
