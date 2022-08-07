@@ -8,6 +8,7 @@ import CreateUser from '../user-card/create-user';
 import Edit from '../user-card/edit-user';
 import UsersList from '../users-list';
 import Access from '../access/access-list';
+import AccessEdit from '../access/access-edit';
 import CrtList from '../crtlist';
 import Certificate from '../certificate';
 import AddCertificate from '../certificate/add-certificate';
@@ -32,6 +33,7 @@ const Rots = () => {
            <Route path="useredit/:id" element={<Edit />} />
            <Route path="userslist" element={<UsersList />} />
            <Route path="access" element={<Access />} />
+           <Route path="accessedit/:id" element={<AccessEdit />} />
            <Route path="platform" element={<Platform />} />
            <Route path="plflist" element={<PlfList />} />
            <Route path="course" element={<Course />} />

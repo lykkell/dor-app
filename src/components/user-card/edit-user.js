@@ -9,8 +9,8 @@ export default function Edit() {
  const [form, setForm] = useState({
     user_status: "",
     user_update: "",
-    // access_group: "",
-    // access_level: "",
+    access_group: "",
+    access_level: "",
     user_name: "",
     user_firstname: "",
     user_secondname: "",
@@ -64,8 +64,8 @@ export default function Edit() {
    const editedUser = {
     user_status: form.user_status,
     user_update: myDate,
-    access_group: form.access_group,
-    access_level: form.access_level,
+    // access_group: form.access_group,
+    // access_level: form.access_level,
     user_name: form.user_name,
     user_firstname: form.user_firstname,
     user_secondname: form.user_secondname,

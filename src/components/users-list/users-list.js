@@ -6,22 +6,22 @@ import { useTranslation } from "react-i18next";
 const User = (props) => (
   
  <tr>
-    <td>{props.record._id}</td>
+    {/* <td>{props.record._id}</td> */}
     <td>{props.record.user_status}</td>
     {/* <td>{props.record.user_update}</td> */}
     <td>{props.record.access_group}</td>
     <td>{props.record.access_level}</td>
     <td>{props.record.user_login}</td>
-    <td>{props.record.user_pass}</td>
+    {/* <td>{props.record.user_pass}</td> */}
     <td>{props.record.user_name}</td>
-    <td>{props.record.user_firstname}</td>
+    {/* <td>{props.record.user_firstname}</td>
     <td>{props.record.user_secondname}</td>
-    <td>{props.record.user_surname}</td>
+    <td>{props.record.user_surname}</td> */}
     <td>{props.record.user_specialty}</td>
     
    <td>
      <Link className="btn btn-link" to={`/useredit/${props.record._id}`}>Edit</Link>
-     {/* <Link className="btn btn-link" to={`/accessedit/${props.record.access}`}>Access</Link> */}
+     <Link className="btn btn-link" to={`/accessedit/${props.record._id}`}>Access</Link>
      <button className="btn btn-link"
        onClick={() => {props.deleteRecord(props.record._id);}}>Delete</button>
    </td>
@@ -80,18 +80,18 @@ export default function RecordList() {
       <table  style={{ marginTop: 20}}>
         <thead>
           <tr>
-            <th>{t('User ID')}</th>
+            {/* <th>{t('User ID')}</th> */}
             <th>{t('Status')}</th>
             {/* <th>{t('Date active')}</th> */}
             <th>{t('Group')}</th>
             <th>{t('Level')}</th>
             <th>{t('Login')}</th>
-            <th>{t('Password')}</th>
+            {/* <th>{t('Password')}</th> */}
             <th>{t('UserName')}</th>
-            <th>{t('FirstName')}</th>
+            {/* <th>{t('FirstName')}</th>
             <th>{t('SecondName')}</th>
+            <th>{t('SurName')}</th> */}
             <th>{t('UserSpecialty')}</th>
-            <th>{t('SurName')}</th>
           </tr>
         </thead>
         <tbody>{UsersList()}</tbody>

@@ -66,8 +66,8 @@ recordRoutes.route("/update/:id").post(function (req, response) {
  let newvalues = {   
    $set: {   
     user_status: req.body.user_status,
-    // access_group: req.body.access_group,
-    // access_level: req.body.access_level,
+    access_group: req.body.access_group,
+    access_level: req.body.access_level,
     user_login: req.body.user_login,
     user_pass: req.body.user_pass, 
     user_name: req.body.user_name,
@@ -84,6 +84,27 @@ recordRoutes.route("/update/:id").post(function (req, response) {
     response.json(res);
   });
 });
+
+// This section will help you edit a accesse by id.
+recordRoutes.route("/accessupdate/:id").post(function (req, response) {
+  let db_connect = dbo.getDb("dor"); 
+  let myquery = { _id: ObjectId( req.params.id )}; 
+  let newvalues = {   
+    $set: {   
+     access_group: req.body.access_group,
+     access_level: req.body.access_level,
+     user_login: req.body.user_login,
+     user_pass: req.body.user_pass, 
+     user_name: req.body.user_name,
+    }, 
+   };
+   db_connect
+   .collection("users")
+   .updateOne(myquery, newvalues, function (err, res) {
+     if (err) throw err;
+     response.json(res);
+   });
+ });
  
 // This section will help you delete a record
 recordRoutes.route("/:id").delete((req, response) => {

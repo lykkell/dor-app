@@ -50,8 +50,8 @@ function updateForm(value) {
     setForm({  
       user_status: "",
       // user_update: myDate,
-      // access_group: "user",
-      // access_level: "start",
+      access_group: "user",
+      access_level: "start",
       user_name: "",
       user_firstname: "",
       user_secondname: "",
