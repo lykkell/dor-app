@@ -11,7 +11,7 @@ import Access from '../access/access-list';
 import AccessEdit from '../access/access-edit';
 import CrtList from '../crtlist';
 import Certificate from '../certificate';
-import AddCertificate from '../certificate/add-certificate';
+import CreateCertificate from '../certificate/create-certificate';
 import PlfList from '../platforms-list';
 import Platform from '../platform';
 import Course from '../course';
@@ -39,7 +39,7 @@ const Rots = () => {
            <Route path="course" element={<Course />} />
            <Route path="courseslist" element={<CoursesList />} />
            <Route path="certificate" element={<Certificate />} />
-           <Route path="certificate/add" element={<AddCertificate />} />
+           <Route path="crtcreate" element={<CreateCertificate />} />
            <Route path="crtlist" element={<CrtList />} />
            <Route path="crcommission" element={<CrCommission />} />
            <Route path="crcomlist" element={<CrComList />} />

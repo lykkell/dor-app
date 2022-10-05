@@ -1,3 +1,3 @@
-import Certificate from "./certificate";
+import CreateCertificate from "./create-certificate";
 
-export default Certificate
+export default CreateCertificate

@@ -1,54 +1,99 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+ 
 
-const CrtList = () =>  {
+const Certificate = (props) => (
+  
+ <tr>
+    <td>{props.certificate._id}</td>
+    <td>{props.certificate.status}</td>
+    <td>{props.certificate.data}</td>
+    <td>{props.certificate.user_id}</td>
+    <td>{props.certificate.user_name}</td>
+    <td>{props.certificate.platform_id}</td>
+    <td>{props.certificate.platform_name}</td>
+    <td>{props.certificate.seminar_id}</td>
+    <td>{props.certificate.seminar_name}</td>
+    
+   <td>
+     <Link className="btn btn-link" to={`/certificateedit/${props.certificate._id}`}>Edit</Link>
+     <button className="btn btn-link"
+       onClick={() => {props.deleteCertificate(props.certificate._id);}}>Delete</button>
+   </td>
+ </tr>
+);
+
+
+export default function CertificateList() {
     const { t } = useTranslation();
+    const [certificates, setCertificates] = useState([]);
+    
+    // This method fetches the certificates from the database.
+    useEffect(() => {
+      async function getCertificates() {
+        const response = await fetch(`http://localhost:5000/certificate/`);
+    
+        if (!response.ok) {
+          const message = `An error occurred: ${response.statusText}`;
+          window.alert(message);
+          return;
+        }
+    
+        const certificates = await response.json();
+        setCertificates(certificates);
+      }
+    
+      getCertificates();
+    
+      return;
+    }, [certificates.length] );
+    
+    // This method will delete a certificate
+    async function deleteCertificate(id) {
+      await fetch(`http://localhost:5000/certificate/${id}`, {
+        method: "DELETE"
+      });
+    
+      const newCertificates = certificates.filter((el) => el._id !== id);
+      setCertificates(newCertificates);
+    }
 
-    return (
-        <div className="container">
-            <div className="d-flex flex-row justify-content-between">
-                <h2>List of certificates</h2>
-                <h2>{t('Username')}:{"user"}</h2>
-            </div>
-            <table class="table d-flex flex-row justify-content-center">
-                <div>
-                <div class="table text-center ">
-                    <thead>
-                        <tr>
-                            <th scope="col">{t('#')}</th>
-                            <th scope="col">{t('Certificate')}ID</th>
-                            <th scope="col">{t('CrtNum')}</th>
-                            <th scope="col">{t('CrtData')}</th>
-                            <th scope="col">{t('CrtStatus')}</th>
-                            <th scope="col">{t('CrtName')}</th>
-                            <th scope="col">{t('CrtType')}</th>
-                            <th scope="col">{t('Platform')}</th>
-                            <th scope="col">{t('Points')}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>235657N</td>
-                            <td>234-F</td>
-                            <td>01/01/2021</td>
-                            <td>true</td>
-                            <td>11-13 weeks</td>
-                            <td>ultrasound</td>
-                            <td>Traning platform</td>
-                            <td>10</td>
-                        </tr>
-                    </tbody>
-                    <div className="navbar navbar-dark bg-light justify-content-between">
-                        <Link to='/' className="btn btn-primary">{t('Dashboard')}</Link>
-                        <Link to='/certificate/add' type='button' className="btn btn-success btn-lg">{t('Add new')}</Link>
-                    </div>
-                </div>
-                </div>
-            </table>
+    // This method will map out the certificates on the table
+ function CertificatesList() {
+    return certificates.map((certificate) => {
+     
+      return (
+        <Certificate certificate={certificate}  deleteRecord={() => deleteCertificate(certificate._id)} key={certificate._id}/>
+      );
+    });
+  }
+  
+  // This following section will display the table with the records of individuals.
+  return (
+    <div>
+      <h3>List of certificates</h3>
+      <table  style={{ marginTop: 20}}>
+        <thead>
+          <tr>
+            <th>{t('Certificate ID')}</th>
+            <th>{t('Status')}</th>
+            <th>{t('Data')}</th>
+            <th>{t('User_id')}</th>
+            <th>{t('User_name')}</th>
+            <th>{t('Platform_id')}</th>
+            <th>{t('Platform_name')}</th>
+            <th>{t('Seminar_id')}</th>
+            <th>{t('Seminar_name')}</th>
+          </tr>
+        </thead>
+        <tbody>{CertificatesList()}</tbody>
+      </table>
+      <div className="navbar navbar-dark bg-light justify-content-between">
+            <Link to='/' className="btn btn-primary">{t('Dashboard')}</Link>
+            {/* <Link to='/access' className="btn btn-primary">{t('Access')}</Link> */}
+            <Link to='/crtcreate' type='button' className="btn btn-success btn-lg">{t('Add new')}</Link>
         </div>
-    )
-}
-
-export default CrtList
+    </div>
+  );
+ }
