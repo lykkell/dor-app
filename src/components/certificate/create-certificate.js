@@ -11,10 +11,10 @@ export default function CreateCertificate() {
     date: myDate,
     user_id: "usertestid",
     user_name: "username",
-    platform_id: "platformid test",
-    platform_name: "platformname test",
-    seminar_id: "platformid test",
-    seminar_name: "platformname test",
+    platform_id: "012345",
+    platform_name: "Ultrasound",
+    seminar_id: "26567",
+    seminar_name: "УЗД 2 триместр",
     });
 const navigate = useNavigate();
 
@@ -71,7 +71,46 @@ function updateForm(value) {
            onChange={(e) => updateForm({ crt_status: e.target.value })}
          />
        </div>
-
+       <div className="form-group">
+         <label htmlFor="platform_id">platform_id</label>
+         <input
+           type="text"
+           className="form-control"
+           id="platform_id"
+           value={form.platform_id}
+           onChange={(e) => updateForm({ platform_id: e.target.value })}
+         />
+       </div>
+       <div className="form-group">
+         <label htmlFor="platform_name">platform_name</label>
+         <input
+           type="text"
+           className="form-control"
+           id="platform_name"
+           value={form.platform_name}
+           onChange={(e) => updateForm({ platform_name: e.target.value })}
+         />
+       </div>
+       <div className="form-group">
+         <label htmlFor="seminar_id">seminar_id</label>
+         <input
+           type="text"
+           className="form-control"
+           id="seminar_id"
+           value={form.seminar_id}
+           onChange={(e) => updateForm({ seminar_id: e.target.value })}
+         />
+       </div>
+       <div className="form-group">
+         <label htmlFor="seminar_name">seminar_name</label>
+         <input
+           type="text"
+           className="form-control"
+           id="seminar_name"
+           value={form.seminar_name}
+           onChange={(e) => updateForm({ seminar_name: e.target.value })}
+         />
+       </div>
       
        <div className="form-group">
          <input

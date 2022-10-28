@@ -8,13 +8,13 @@ const Certificate = (props) => (
  <tr>
     <td>{props.certificate._id}</td>
     <td>{props.certificate.crt_status}</td>
-    {/* <td>{props.certificate.update}</td>
+    <td>{props.certificate.update}</td>
     <td>{props.certificate.user_id}</td>
     <td>{props.certificate.user_name}</td>
     <td>{props.certificate.platform_id}</td>
     <td>{props.certificate.platform_name}</td>
     <td>{props.certificate.seminar_id}</td>
-    <td>{props.certificate.seminar_name}</td> */}
+    <td>{props.certificate.seminar_name}</td>
     
    <td>
      <Link className="btn btn-link" to={`/certificateedit/${props.certificate._id}`}>Edit</Link>
@@ -78,13 +78,13 @@ function CertificateList() {
           <tr>
             <th>{t('Certificate ID')}</th>
             <th>{t('CrtStatus')}</th>
-            {/* <th>{t('Update')}</th>
+            <th>{t('Update')}</th>
             <th>{t('User_id')}</th>
             <th>{t('User_name')}</th>
             <th>{t('Platform_id')}</th>
             <th>{t('Platform_name')}</th>
             <th>{t('Seminar_id')}</th>
-            <th>{t('Seminar_name')}</th> */}
+            <th>{t('Seminar_name')}</th>
           </tr>
         </thead>
         <tbody>{CertificateList()}</tbody>
