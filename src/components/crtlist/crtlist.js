@@ -17,7 +17,7 @@ const Certificate = (props) => (
     <td>{props.certificate.seminar_name}</td>
     
    <td>
-     <Link className="btn btn-link" to={`/certificateedit/${props.certificate._id}`}>Edit</Link>
+     <Link className="btn btn-link" to={`/certificate/edit/${props.certificate._id}`}>Edit</Link>
      <button className="btn btn-link"
        onClick={() => {props.deleteCertificate(props.certificate._id);}}>Delete</button>
    </td>
@@ -51,7 +51,7 @@ export default function CertificateList() {
   
   // This method will delete a record
   async function deleteCertificate(id) {
-    await fetch(`http://localhost:5000/${id}`, {
+    await fetch(`http://localhost:5000/certificate/${id}`, {
       method: "DELETE"
     });
   

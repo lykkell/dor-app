@@ -114,7 +114,7 @@ recordRoutes.route("/:id").delete((req, response) => {
  .collection("users")
  .deleteOne(myquery, function (err, obj) {
    if (err) throw err;
-   console.log("1 document deleted");
+   console.log("1 document user deleted");
    response.json(obj);
  });
 });

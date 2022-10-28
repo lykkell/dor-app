@@ -45,7 +45,7 @@ const ObjectId = require("mongodb").ObjectId;
  });
 
  // This section will help you update a record by id.
- certificateRoutes.route("/update/:id").post(function (req, response) {
+ certificateRoutes.route("/certificateedit/:id").post(function (req, response) {
   let db_connect = dbo.getDb("dor"); 
   let myquery = { _id: ObjectId( req.params.id )}; 
   let newvalues = {   
@@ -59,11 +59,24 @@ const ObjectId = require("mongodb").ObjectId;
     }, 
    };
    db_connect
-   .collection("users")
+   .collection("certificates")
    .updateOne(myquery, newvalues, function (err, res) {
      if (err) throw err;
      response.json(res);
    });
+ });
+
+ // This section will help you delete a record
+ certificateRoutes.route("/certificate/:id").delete((req, response) => {
+  let db_connect = dbo.getDb();
+  let myquery = { _id: ObjectId( req.params.id )};
+  db_connect
+  .collection("certificates")
+  .deleteOne(myquery, function (err, obj) {
+    if (err) throw err;
+    console.log("1 document crt deleted");
+    response.json(obj);
+  });
  });
 
 module.exports = certificateRoutes;
