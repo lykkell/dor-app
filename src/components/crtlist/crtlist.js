@@ -7,14 +7,14 @@ const Certificate = (props) => (
   
  <tr>
     <td>{props.certificate._id}</td>
-    <td>{props.certificate.status}</td>
-    <td>{props.certificate.data}</td>
+    <td>{props.certificate.crt_status}</td>
+    {/* <td>{props.certificate.update}</td>
     <td>{props.certificate.user_id}</td>
     <td>{props.certificate.user_name}</td>
     <td>{props.certificate.platform_id}</td>
     <td>{props.certificate.platform_name}</td>
     <td>{props.certificate.seminar_id}</td>
-    <td>{props.certificate.seminar_name}</td>
+    <td>{props.certificate.seminar_name}</td> */}
     
    <td>
      <Link className="btn btn-link" to={`/certificateedit/${props.certificate._id}`}>Edit</Link>
@@ -26,48 +26,48 @@ const Certificate = (props) => (
 
 
 export default function CertificateList() {
-    const { t } = useTranslation();
-    const [certificates, setCertificates] = useState([]);
-    
-    // This method fetches the certificates from the database.
-    useEffect(() => {
-      async function getCertificates() {
-        const response = await fetch(`http://localhost:5000/certificate/`);
-    
-        if (!response.ok) {
-          const message = `An error occurred: ${response.statusText}`;
-          window.alert(message);
-          return;
-        }
-    
-        const certificates = await response.json();
-        setCertificates(certificates);
+  const { t } = useTranslation();
+  const [certificates, setCertificates] = useState([]);
+  
+  // This method fetches the records from the database.
+  useEffect(() => {
+    async function getCertificates() {
+      const response = await fetch(`http://localhost:5000/certificate/`);
+  
+      if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
       }
-    
-      getCertificates();
-    
-      return;
-    }, [certificates.length] );
-    
-    // This method will delete a certificate
-    async function deleteCertificate(id) {
-      await fetch(`http://localhost:5000/certificate/${id}`, {
-        method: "DELETE"
-      });
-    
-      const newCertificates = certificates.filter((el) => el._id !== id);
-      setCertificates(newCertificates);
+  
+      const certificates = await response.json();
+      setCertificates(certificates);
     }
-
-    // This method will map out the certificates on the table
- function CertificatesList() {
-    return certificates.map((certificate) => {
-     
-      return (
-        <Certificate certificate={certificate}  deleteRecord={() => deleteCertificate(certificate._id)} key={certificate._id}/>
-      );
+  
+    getCertificates();
+  
+    return;
+  }, [certificates.length] );
+  
+  // This method will delete a record
+  async function deleteCertificate(id) {
+    await fetch(`http://localhost:5000/${id}`, {
+      method: "DELETE"
     });
+  
+    const newCertificates = certificates.filter((el) => el._id !== id);
+    setCertificates(newCertificates);
   }
+
+  // This method will map out the records on the table
+function CertificateList() {
+  return certificates.map((certificate) => {
+   
+    return (
+      <Certificate certificate={certificate}  deleteCertificate={() => deleteCertificate(certificate._id)} key={certificate._id}/>
+    );
+  });
+}
   
   // This following section will display the table with the records of individuals.
   return (
@@ -77,17 +77,17 @@ export default function CertificateList() {
         <thead>
           <tr>
             <th>{t('Certificate ID')}</th>
-            <th>{t('Status')}</th>
-            <th>{t('Data')}</th>
+            <th>{t('CrtStatus')}</th>
+            {/* <th>{t('Update')}</th>
             <th>{t('User_id')}</th>
             <th>{t('User_name')}</th>
             <th>{t('Platform_id')}</th>
             <th>{t('Platform_name')}</th>
             <th>{t('Seminar_id')}</th>
-            <th>{t('Seminar_name')}</th>
+            <th>{t('Seminar_name')}</th> */}
           </tr>
         </thead>
-        <tbody>{CertificatesList()}</tbody>
+        <tbody>{CertificateList()}</tbody>
       </table>
       <div className="navbar navbar-dark bg-light justify-content-between">
             <Link to='/' className="btn btn-primary">{t('Dashboard')}</Link>

@@ -7,7 +7,7 @@ export default function CreateCertificate() {
   const myDate = Date("<YYYY-mm-dd>");
   const { t } = useTranslation();  
   const [form, setForm] = useState({
-    status: "",
+    crt_status: "",
     date: myDate,
     user_id: "usertestid",
     user_name: "username",
@@ -45,7 +45,7 @@ function updateForm(value) {
     });
   
     setForm({  
-        status: "",
+        crt_status: "",
         user_id: "",
         user_name: "",
         platform_id: "",
@@ -62,13 +62,13 @@ function updateForm(value) {
      <h3>Create New Certificate</h3>
      <form onSubmit={onSubmit}>
        <div className="form-group">
-         <label htmlFor="certificate_status">certificate_status</label>
+         <label htmlFor="crt_status">crt_status</label>
          <input
            type="text"
            className="form-control"
-           id="certificate_status"
-           value={form.certificate_status}
-           onChange={(e) => updateForm({ certificate_status: e.target.value })}
+           id="crt_status"
+           value={form.crt_status}
+           onChange={(e) => updateForm({ crt_status: e.target.value })}
          />
        </div>
 
