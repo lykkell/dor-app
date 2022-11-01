@@ -23,6 +23,19 @@ const ObjectId = require("mongodb").ObjectId;
     });
  });
 
+ // This section will help you get a single record by id
+ certificateRoutes.route("/certificate/:id").get(function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { _id: ObjectId( req.params.id )};
+  db_connect
+      .collection("users")
+      .findOne(myquery, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+      });
+ });
+  
+
  // This section will help you create a new certificate.
  certificateRoutes.route("/certificate/add").post(function (req, response) {
   let db_connect = dbo.getDb();
@@ -45,7 +58,7 @@ const ObjectId = require("mongodb").ObjectId;
  });
 
  // This section will help you update a record by id.
- certificateRoutes.route("/certificateedit/:id").post(function (req, response) {
+ certificateRoutes.route("/crtupdate/:id").post(function (req, response) {
   let db_connect = dbo.getDb("dor"); 
   let myquery = { _id: ObjectId( req.params.id )}; 
   let newvalues = {   

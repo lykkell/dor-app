@@ -18,7 +18,7 @@ export default function Edit() {
     user_specialty: "",
     user_login: "",
     user_pass: "",
-    records: [],
+    // records: [],
  });
  const params = useParams();
  const navigate = useNavigate();

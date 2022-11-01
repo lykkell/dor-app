@@ -17,7 +17,7 @@ const Certificate = (props) => (
     <td>{props.certificate.seminar_name}</td>
     
    <td>
-     <Link className="btn btn-link" to={`/certificate/edit/${props.certificate._id}`}>Edit</Link>
+     <Link className="btn btn-link" to={`/crtedit/${props.certificate._id}`}>Edit</Link>
      <button className="btn btn-link"
        onClick={() => {props.deleteCertificate(props.certificate._id);}}>Delete</button>
    </td>
