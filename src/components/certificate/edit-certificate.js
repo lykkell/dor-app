@@ -6,17 +6,17 @@ import { useTranslation } from "react-i18next";
  
 export default function EditCertificate() {
     const { t } = useTranslation();  
- const [form, setForm] = useState({
-    crt_status: "",
-    myDate: "",
-    user_id: "",
-    user_name: "",
-    platform_id: "",
-    platform_name: "",
-    seminar_id: "",
-    seminar_name: "",
-    records: [],
- });
+    const [form, setForm] = useState({
+        crt_status: "",
+        crt_update: "",
+        user_id: "",
+        user_name: "",
+        platform_id: "",
+        platform_name: "",
+        seminar_id: "",
+        seminar_name: "",
+        records: [],
+    });
  const params = useParams();
  const navigate = useNavigate();
  
@@ -38,7 +38,6 @@ export default function EditCertificate() {
        return;
      }
      setForm(record);
-     console.log('record:',record);
    }
    fetchData();
    return;
@@ -55,14 +54,15 @@ export default function EditCertificate() {
  
  async function onSubmit(e) {
    e.preventDefault();
-  //  const myDate= Date();
+   const myDate = Date();
+
 
   //  const editedUser = { ...form };
 
    const editedCertificate = {
     _id: form._id,
     crt_status: form.crt_status,
-    myDate: form.myDate,
+    crt_update: myDate,
     user_id: form.user_id,
     user_name: form.user_name,
     platform_id: form.platform_id,
@@ -70,7 +70,7 @@ export default function EditCertificate() {
     seminar_id: form.seminar_id,
     seminar_name: form.seminar_name,
    };
-   console.log('editedCertificate:', params.id, editedCertificate );
+  //  console.log('editedCertificate:', params.id, editedCertificate );
 
    // This will send a post request to update the data in the database.
    await fetch(`http://localhost:5000/crtupdate/${params.id}`, {
@@ -115,13 +115,13 @@ export default function EditCertificate() {
          />
        </div>
         <div className="form-group">
-          <label htmlFor="myDate">Update</label>
+          <label htmlFor="crt_update">Update</label>
           <input
             type="text"
             className="form-control"
-            id="myDate"
-            value={form.myDate}
-            onChange={(e) => updateForm({ myDate: e.target.value })}
+            id="crt_update"
+            value={form.crt_update}
+            onChange={(e) => updateForm({ crt_update: e.target.value })}
             />
         </div>
      <div className="form-group">

@@ -41,7 +41,7 @@ const ObjectId = require("mongodb").ObjectId;
   let db_connect = dbo.getDb();
   let myobj = {
      crt_status: req.body.crt_status,
-     update: req.body.update,
+     crt_update: req.body.crt_update,
      user_id: req.body.user_id,
      user_name: req.body.user_name,
      platform_id: req.body.platform_id,
@@ -64,6 +64,7 @@ const ObjectId = require("mongodb").ObjectId;
   let newvalues = {   
     $set: {  
      crt_status: req.body.crt_status,
+     crt_update: req.body.crt_update,
      user_name: req.body.user_name,
      platform_id: req.body.platform_id,
      platform_name: req.body.platform_name,

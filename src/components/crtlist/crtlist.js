@@ -8,7 +8,7 @@ const Certificate = (props) => (
  <tr>
     <td>{props.certificate._id}</td>
     <td>{props.certificate.crt_status}</td>
-    <td>{props.certificate.update}</td>
+    <td>{props.certificate.crt_update}</td>
     <td>{props.certificate.user_id}</td>
     <td>{props.certificate.user_name}</td>
     <td>{props.certificate.platform_id}</td>
