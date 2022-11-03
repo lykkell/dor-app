@@ -192,8 +192,6 @@ function updateForm(value) {
            onChange={(e) => updateForm({ platform_name: e.target.value })}
          />
        </div>
-      
-      
        <div className="form-group">
          <input
            type="submit"

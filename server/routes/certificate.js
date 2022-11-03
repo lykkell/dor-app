@@ -34,7 +34,6 @@ const ObjectId = require("mongodb").ObjectId;
         res.json(result);
       });
  });
-  
 
  // This section will help you create a new certificate.
  certificateRoutes.route("/certificate/add").post(function (req, response) {
@@ -42,6 +41,10 @@ const ObjectId = require("mongodb").ObjectId;
   let myobj = {
      crt_status: req.body.crt_status,
      crt_update: req.body.crt_update,
+     crt_startdate: req.body.crt_startdate,
+     crt_enddate: req.body.crt_enddate,
+     crt_period: req.body.crt_period,
+     crt_points: req.body.crt_points,
      user_id: req.body.user_id,
      user_name: req.body.user_name,
      platform_id: req.body.platform_id,
@@ -63,13 +66,18 @@ const ObjectId = require("mongodb").ObjectId;
   let myquery = { _id: ObjectId( req.params.id )}; 
   let newvalues = {   
     $set: {  
-     crt_status: req.body.crt_status,
-     crt_update: req.body.crt_update,
-     user_name: req.body.user_name,
-     platform_id: req.body.platform_id,
-     platform_name: req.body.platform_name,
-     seminar_id: req.body.seminar_id,
-     seminar_name: req.body.seminar_name,
+      crt_status: req.body.crt_status,
+      crt_update: req.body.crt_update,
+      crt_startdate: req.body.crt_startdate,
+      crt_enddate: req.body.crt_enddate,
+      crt_period: req.body.crt_period,
+      crt_points: req.body.crt_points,
+      user_id: req.body.user_id,
+      user_name: req.body.user_name,
+      platform_id: req.body.platform_id,
+      platform_name: req.body.platform_name,
+      seminar_id: req.body.seminar_id,
+      seminar_name: req.body.seminar_name,
     }, 
    };
    db_connect
