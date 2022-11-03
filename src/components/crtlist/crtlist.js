@@ -6,16 +6,19 @@ import { useTranslation } from "react-i18next";
 const Certificate = (props) => (
   
  <tr>
-    <td>{props.certificate._id}</td>
-    <td>{props.certificate.crt_status}</td>
-    <td>{props.certificate.crt_update}</td>
-    <td>{props.certificate.user_id}</td>
+    {/* <td>{props.certificate._id}</td> */}
+    {/* <td>{props.certificate.user_id}</td> */}
     <td>{props.certificate.user_name}</td>
-    <td>{props.certificate.platform_id}</td>
-    <td>{props.certificate.platform_name}</td>
-    <td>{props.certificate.seminar_id}</td>
+    <td>{props.certificate.crt_status}</td>
+    {/* <td>{props.certificate.crt_update}</td> */}
+    {/* <td>{props.certificate.seminar_id}</td> */}
     <td>{props.certificate.seminar_name}</td>
-    
+    <td>{props.certificate.crt_startdate}</td>
+    <td>{props.certificate.crt_enddate}</td>
+    <td>{props.certificate.crt_period}</td>
+    <td>{props.certificate.crt_points}</td>
+    {/* <td>{props.certificate.platform_id}</td> */}
+    <td>{props.certificate.platform_name}</td>
    <td>
      <Link className="btn btn-link" to={`/crtedit/${props.certificate._id}`}>Edit</Link>
      <button className="btn btn-link"
@@ -76,15 +79,19 @@ function CertificateList() {
       <table  style={{ marginTop: 20}}>
         <thead>
           <tr>
-            <th>{t('Certificate ID')}</th>
-            <th>{t('CrtStatus')}</th>
-            <th>{t('Update')}</th>
-            <th>{t('User_id')}</th>
+            {/* <th>{t('Certificate ID')}</th> */}
+            {/* <th>{t('User_id')}</th> */}
             <th>{t('User_name')}</th>
-            <th>{t('Platform_id')}</th>
-            <th>{t('Platform_name')}</th>
-            <th>{t('Seminar_id')}</th>
+            <th>{t('CrtStatus')}</th>
+            {/* <th>{t('Update')}</th> */}
+            {/* <th>{t('Seminar_id')}</th> */}
             <th>{t('Seminar_name')}</th>
+            <th>{t('StartDate')}</th>
+            <th>{t('EndDate')}</th>
+            <th>{t('Period')}</th>
+            <th>{t('Points')}</th>
+            {/* <th>{t('Platform_id')}</th> */}
+            <th>{t('Platform_name')}</th>
           </tr>
         </thead>
         <tbody>{CertificateList()}</tbody>

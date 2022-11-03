@@ -54,7 +54,8 @@ export default function EditCertificate() {
  
  async function onSubmit(e) {
    e.preventDefault();
-   const myDate = Date();
+  //  const myDate = Date();
+   const myDate = Date("<YYYY-mm-dd>");
 
 
   //  const editedUser = { ...form };
