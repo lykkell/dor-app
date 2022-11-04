@@ -61,6 +61,13 @@ export default function CertificateList() {
     const newCertificates = certificates.filter((el) => el._id !== id);
     setCertificates(newCertificates);
   }
+  //This method will you filter certificates
+  function CertificateFilters (fil) {
+    
+    const newCertificates = certificates.filter((elts) => elts.fil = fil);
+    setCertificates(newCertificates);
+  }
+  CertificateFilters ();
 
   // This method will map out the records on the table
 function CertificateList() {
@@ -77,6 +84,7 @@ function CertificateList() {
     <div>
       <h3>List of certificates</h3>
       <table  style={{ marginTop: 20}}>
+
         <thead>
           <tr>
             {/* <th>{t('Certificate ID')}</th> */}
