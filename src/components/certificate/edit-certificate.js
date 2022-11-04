@@ -60,6 +60,7 @@ export default function EditCertificate() {
    e.preventDefault();
   //  const myDate = Date();
    const myDate = Date("<YYYY-mm-dd>");
+  //  const crtPeriod = Date.parse(form.crt_enddate-form.crt_startdate);
   //  const editedUser = { ...form };
    const editedCertificate = {
     _id: form._id,
