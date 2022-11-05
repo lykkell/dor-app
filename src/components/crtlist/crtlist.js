@@ -62,12 +62,12 @@ export default function CertificateList() {
     setCertificates(newCertificates);
   }
   //This method will you filter certificates
-  function CertificateFilters (fil) {
+  // function CertificateFilters (fil) {
     
-    const newCertificates = certificates.filter((elts) => elts.fil = fil);
-    setCertificates(newCertificates);
-  }
-  CertificateFilters ();
+  //   const newCertificates = certificates.filter((elts) => elts.fil = fil);
+  //   setCertificates(newCertificates);
+  // }
+  // CertificateFilters ();
 
   // This method will map out the records on the table
 function CertificateList() {
