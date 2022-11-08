@@ -30,6 +30,7 @@ const Certificate = (props) => (
 
 export default function CertificateList() {
   const { t } = useTranslation();
+  const filter = "";
   const [certificates, setCertificates] = useState([]);
   
   // This method fetches the records from the database.
@@ -45,6 +46,11 @@ export default function CertificateList() {
   
       const certificates = await response.json();
       setCertificates(certificates);
+
+ //This method will you filter certificates
+      const newCertificates = certificates.filter((el) => el.user_name = filter);
+      setCertificates(newCertificates);
+
     }
   
     getCertificates();
@@ -61,14 +67,6 @@ export default function CertificateList() {
     const newCertificates = certificates.filter((el) => el._id !== id);
     setCertificates(newCertificates);
   }
-  //This method will you filter certificates
-  // function CertificateFilters (fil) {
-    
-  //   const newCertificates = certificates.filter((elts) => elts.fil = fil);
-  //   setCertificates(newCertificates);
-  // }
-  // CertificateFilters ();
-
   // This method will map out the records on the table
 function CertificateList() {
   return certificates.map((certificate) => {
@@ -83,8 +81,8 @@ function CertificateList() {
   return (
     <div>
       <h3>List of certificates</h3>
+      <input type="text" id="filter" value="Петренко"></input>
       <table  style={{ marginTop: 20}}>
-
         <thead>
           <tr>
             {/* <th>{t('Certificate ID')}</th> */}

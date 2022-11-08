@@ -16,10 +16,10 @@ export default function EditCertificate() {
       crt_startdate: "",
       crt_enddate: "",
       crt_period: "",
-      crt_points:"",
+      crt_points: "",
       platform_id: "",
       platform_name: "",
-      records: [],
+      // records: [],
     });
  const params = useParams();
  const navigate = useNavigate();

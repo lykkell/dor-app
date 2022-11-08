@@ -23,18 +23,21 @@ const ObjectId = require("mongodb").ObjectId;
     });
  });
  
-//  //This section will help you filter record by parametrs
-//  certificateRoutes.route("/certificate/filters").get(function (req, res) {
-//   let db_connect = dbo.getDb("dor");
-//   let myquery = {'user_id': req.params.user_id,'user_name':req.params.user_name };
-//   db_connect
-//     .collection("certificates")
-//     .find(myquery)
-//     .toArray(function (err, result) {
-//       if (err) throw err;
-//       res.json(result);
-//     });
-//  });
+ //This section will help you filter record by parametrs
+ certificateRoutes.route("/certificate/filter").get(function (req, res) {
+  let db_connect = dbo.getDb("dor");
+  let myquery = {
+    // user_id: req.body.user_id,
+    user_name: req.body.user_name
+   };
+  db_connect
+    .collection("certificates")
+    .filter(myquery)
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+ });
 
  // This section will help you get a single record by id
  certificateRoutes.route("/certificate/:id").get(function (req, res) {

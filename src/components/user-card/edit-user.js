@@ -7,17 +7,17 @@ import { useTranslation } from "react-i18next";
 export default function Edit() {
     const { t } = useTranslation();  
  const [form, setForm] = useState({
-    user_status: "",
-    user_update: "",
-    access_group: "",
-    access_level: "",
-    user_name: "",
-    user_firstname: "",
-    user_secondname: "",
-    user_surname: "",
-    user_specialty: "",
-    user_login: "",
-    user_pass: "",
+    user_status: "?",
+    user_update: "?",
+    access_group: "?",
+    access_level: "?",
+    user_name: "?",
+    user_firstname: "?",
+    user_secondname: "?",
+    user_surname: "?",
+    user_specialty: "?",
+    user_login: "?",
+    user_pass: "?",
     // records: [],
  });
  const params = useParams();
