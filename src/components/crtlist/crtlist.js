@@ -30,7 +30,16 @@ const Certificate = (props) => (
 
 export default function CertificateList() {
   const { t } = useTranslation();
-  const filter = "";
+  // const filter = "";
+  // These methods will update the state properties.
+  const [filter, setFilter] = useState("");
+  // function updateFilter(value) {
+  //   return setFilter((prev) => {
+  //     return { ...prev, ...value };
+  //   });
+  // };
+  
+
   const [certificates, setCertificates] = useState([]);
   
   // This method fetches the records from the database.
@@ -48,15 +57,22 @@ export default function CertificateList() {
       setCertificates(certificates);
 
  //This method will you filter certificates
-      const newCertificates = certificates.filter((el) => el.user_name = filter);
-      setCertificates(newCertificates);
-
-    }
-  
+//  console.log(certificates);
+  if (filter !== "") {
+    // console.log(filter);
+    const newCertificates = certificates.filter((el) => el.user_name === filter);
+    setCertificates(newCertificates);
+    // console.log(filter);
+    // console.log(certificates.user_name);
+    setFilter(filter);
+    return;
+    
+  }
+  }
     getCertificates();
   
     return;
-  }, [certificates.length] );
+  }, [certificates.length,filter] );
   
   // This method will delete a record
   async function deleteCertificate(id) {
@@ -81,7 +97,10 @@ function CertificateList() {
   return (
     <div>
       <h3>List of certificates</h3>
-      <input type="text" id="filter" value="Петренко"></input>
+      <input type="text" id="filter"
+       value={filter}
+       onChange={e => setFilter(e.target.value)}
+      ></input>
       <table  style={{ marginTop: 20}}>
         <thead>
           <tr>
