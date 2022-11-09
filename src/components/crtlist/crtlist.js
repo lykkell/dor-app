@@ -30,16 +30,7 @@ const Certificate = (props) => (
 
 export default function CertificateList() {
   const { t } = useTranslation();
-  // const filter = "";
-  // These methods will update the state properties.
   const [filter, setFilter] = useState("");
-  // function updateFilter(value) {
-  //   return setFilter((prev) => {
-  //     return { ...prev, ...value };
-  //   });
-  // };
-  
-
   const [certificates, setCertificates] = useState([]);
   
   // This method fetches the records from the database.
@@ -60,7 +51,7 @@ export default function CertificateList() {
 //  console.log(certificates);
   if (filter !== "") {
     // console.log(filter);
-    const newCertificates = certificates.filter((el) => el.user_name === filter);
+    const newCertificates = certificates.filter((el) => el.user_name === filter  || el.seminar_name === filter || el.platform_name === filter);
     setCertificates(newCertificates);
     // console.log(filter);
     // console.log(certificates.user_name);
@@ -75,7 +66,7 @@ export default function CertificateList() {
   }, [certificates.length,filter] );
   
   // This method will delete a record
-  async function deleteCertificate(id) {
+    async function deleteCertificate(id) {
     await fetch(`http://localhost:5000/certificate/${id}`, {
       method: "DELETE"
     });
@@ -84,8 +75,8 @@ export default function CertificateList() {
     setCertificates(newCertificates);
   }
   // This method will map out the records on the table
-function CertificateList() {
-  return certificates.map((certificate) => {
+    function CertificateList() {
+    return certificates.map((certificate) => {
    
     return (
       <Certificate certificate={certificate}  deleteCertificate={() => deleteCertificate(certificate._id)} key={certificate._id}/>
@@ -99,6 +90,7 @@ function CertificateList() {
       <h3>List of certificates</h3>
       <input type="text" id="filter"
        value={filter}
+       placeholder="filter: type value"
        onChange={e => setFilter(e.target.value)}
       ></input>
       <table  style={{ marginTop: 20}}>
