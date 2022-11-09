@@ -30,7 +30,7 @@ const Certificate = (props) => (
 
 export default function CertificateList() {
   const { t } = useTranslation();
-  const [filter, setFilter] = useState("");
+  const [query, setFilter] = useState("");
   const [certificates, setCertificates] = useState([]);
   
   // This method fetches the records from the database.
@@ -47,15 +47,11 @@ export default function CertificateList() {
       const certificates = await response.json();
       setCertificates(certificates);
 
- //This method will you filter certificates
-//  console.log(certificates);
-  if (filter !== "") {
-    // console.log(filter);
-    const newCertificates = certificates.filter((el) => el.user_name === filter  || el.seminar_name === filter || el.platform_name === filter);
+  //This method will you filter records includes text of query
+  if (query !== "") {
+    const newCertificates = certificates.filter((el) => el.user_name.toLowerCase().includes(query.toLowerCase()) || el.seminar_name.toLowerCase().includes(query.toLowerCase()) || el.platform_name.toLowerCase().includes(query.toLowerCase()) || el.crt_status.toLowerCase().includes(query.toLowerCase()));
     setCertificates(newCertificates);
-    // console.log(filter);
-    // console.log(certificates.user_name);
-    setFilter(filter);
+    setFilter(query);
     return;
     
   }
@@ -63,7 +59,7 @@ export default function CertificateList() {
     getCertificates();
   
     return;
-  }, [certificates.length,filter] );
+  }, [certificates.length,query] );
   
   // This method will delete a record
     async function deleteCertificate(id) {
@@ -88,9 +84,9 @@ export default function CertificateList() {
   return (
     <div>
       <h3>List of certificates</h3>
-      <input type="text" id="filter"
-       value={filter}
-       placeholder="filter: type value"
+      <input type="text" id="query"
+       value={query}
+       placeholder="query: type value"
        onChange={e => setFilter(e.target.value)}
       ></input>
       <table  style={{ marginTop: 20}}>
