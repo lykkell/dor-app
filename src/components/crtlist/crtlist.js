@@ -86,9 +86,10 @@ export default function CertificateList() {
       <h3>List of certificates</h3>
       <input type="text" id="query"
        value={query}
-       placeholder="query: type value"
+       placeholder="filter: type value"
        onChange={e => setFilter(e.target.value)}
       ></input>
+      <button onClick={e => setFilter("")}>Clean</button>
       <table  style={{ marginTop: 20}}>
         <thead>
           <tr>
