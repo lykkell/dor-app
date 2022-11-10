@@ -49,7 +49,8 @@ export default function CertificateList() {
 
   //This method will you filter records includes text of query
   if (query !== "") {
-    const newCertificates = certificates.filter((el) => el.user_name.toLowerCase().includes(query.toLowerCase()) || el.seminar_name.toLowerCase().includes(query.toLowerCase()) || el.platform_name.toLowerCase().includes(query.toLowerCase()) || el.crt_status.toLowerCase().includes(query.toLowerCase()));
+    console.log(typeof(query));
+    const newCertificates = certificates.filter((el) => el.user_name.toLowerCase().includes(query.toLowerCase()) || el.seminar_name.toLowerCase().includes(query.toLowerCase()) || el.crt_points.toLowerCase().includes(query.toLowerCase()) || el.platform_name.toLowerCase().includes(query.toLowerCase()) || el.crt_status.toLowerCase().includes(query.toLowerCase()));
     setCertificates(newCertificates);
     setFilter(query);
     return;
