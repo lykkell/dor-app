@@ -31,6 +31,7 @@ const User = (props) => (
 
 export default function RecordList() {
     const { t } = useTranslation();
+    const [query, setFilter] = useState("");
     const [records, setRecords] = useState([]);
     
     // This method fetches the records from the database.
@@ -46,12 +47,20 @@ export default function RecordList() {
     
         const records = await response.json();
         setRecords(records);
+
+        //This method will you filter records includes text/nubers of query
+        if (query !== "") {
+          const newRecords = records.filter((el) => el.user_name.toLowerCase().includes(query.toLowerCase()) || el.user_status.toLowerCase().includes(query.toLowerCase()) || el.user_login.toLowerCase().includes(query.toLowerCase()) || el.user_specialty.toLowerCase().includes(query.toLowerCase()));
+          
+          setRecords(newRecords);
+          setFilter(query);
+          return;
+        }
       }
     
       getRecords();
     
-      return;
-    }, [records.length] );
+    }, [records.length,query] );
     
     // This method will delete a record
     async function deleteRecord(id) {
@@ -77,6 +86,12 @@ export default function RecordList() {
   return (
     <div>
       <h3>List of users</h3>
+      <input type="text" id="query"
+       value={query}
+       placeholder="filter: type value"
+       onChange={e => setFilter(e.target.value)}
+      ></input>
+      <button onClick={e => setFilter("")}>Clean</button>
       <table  style={{ marginTop: 20}}>
         <thead>
           <tr>

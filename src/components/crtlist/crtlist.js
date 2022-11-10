@@ -47,14 +47,13 @@ export default function CertificateList() {
       const certificates = await response.json();
       setCertificates(certificates);
 
-  //This method will you filter records includes text of query
+  //This method will you filter records includes text/nubers of query
   if (query !== "") {
-    console.log(typeof(query));
     const newCertificates = certificates.filter((el) => el.user_name.toLowerCase().includes(query.toLowerCase()) || el.seminar_name.toLowerCase().includes(query.toLowerCase()) || el.crt_points.toLowerCase().includes(query.toLowerCase()) || el.platform_name.toLowerCase().includes(query.toLowerCase()) || el.crt_status.toLowerCase().includes(query.toLowerCase()));
+    
     setCertificates(newCertificates);
     setFilter(query);
     return;
-    
   }
   }
     getCertificates();
