@@ -31,6 +31,7 @@ const User = (props) => (
 
 export default function RecordList() {
     const { t } = useTranslation();
+    // const [massege, setMassege] = useState();
     const [query, setFilter] = useState("");
     const [records, setRecords] = useState([]);
     
@@ -54,10 +55,17 @@ export default function RecordList() {
           
           setRecords(newRecords);
           setFilter(query);
+          //  console.log(massege);
+          // //This messaage of filter if the records is not finded
+          // if (query === true) { 
+          //   setMassege(`Records is not finded`);
+          //   console.log(massege);
+          //   }
+          //   setMassege("");
           return;
-        }
+          
       }
-    
+    }
       getRecords();
     
     }, [records.length,query] );
@@ -86,11 +94,14 @@ export default function RecordList() {
   return (
     <div>
       <h3>List of users</h3>
+      <div className="d-flex flex-row">
       <input type="text" id="query"
        value={query}
        placeholder="filter: type value"
        onChange={e => setFilter(e.target.value)}
       ></input>
+      </div>
+      {/* <div>{massege}</div> */}
       <button onClick={e => setFilter("")}>Clean</button>
       <table  style={{ marginTop: 20}}>
         <thead>
