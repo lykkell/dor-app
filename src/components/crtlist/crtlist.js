@@ -7,7 +7,7 @@ const Certificate = (props) => (
   
  <tr>
     {/* <td>{props.certificate._id}</td> */}
-    {/* <td>{props.certificate.user_id}</td> */}
+    <td>{props.certificate.user_id}</td>
     <td>{props.certificate.user_name}</td>
     <td>{props.certificate.crt_status}</td>
     {/* <td>{props.certificate.crt_update}</td> */}
@@ -30,8 +30,15 @@ const Certificate = (props) => (
 
 export default function CertificateList() {
   const { t } = useTranslation();
-  const [query, setFilter] = useState("");
+  //This is state of list of certificate
   const [certificates, setCertificates] = useState([]);
+   //This is state of certificate filter by user_id
+   const [user, setUser] = useState("");
+   //This is state of certificate list by user_id filter 
+  //  const [userCertificates, setUserCertificates] = useState([]);
+  //This is state of certificate filter by user query text/numbers
+  const [query, setFilter] = useState("");
+ 
   
   // This method fetches the records from the database.
   useEffect(() => {
@@ -43,23 +50,40 @@ export default function CertificateList() {
         window.alert(message);
         return;
       }
-  
       const certificates = await response.json();
       setCertificates(certificates);
 
-  //This method will you filter records includes text/nubers of query
-  if (query !== "") {
-    const newCertificates = certificates.filter((el) => el.user_name.toLowerCase().includes(query.toLowerCase()) || el.seminar_name.toLowerCase().includes(query.toLowerCase()) || el.crt_points.toLowerCase().includes(query.toLowerCase()) || el.platform_name.toLowerCase().includes(query.toLowerCase()) || el.crt_status.toLowerCase().includes(query.toLowerCase()));
-    
-    setCertificates(newCertificates);
-    setFilter(query);
-    return;
+      //This method will you filter records includes text/nubers of query
+      if (query !== "") {
+        const newCertificates = certificates.filter((el) => el.user_id.toLowerCase().includes(query.toLowerCase()) || el.seminar_name.toLowerCase().includes(query.toLowerCase()) || el.crt_points.toLowerCase().includes(query.toLowerCase()) || el.platform_name.toLowerCase().includes(query.toLowerCase()) || el.crt_status.toLowerCase().includes(query.toLowerCase()));
+        
+        setCertificates(newCertificates);
+        // setUserCertificates(newUserCertificates);
+        setFilter(query);
+        console.log("query:",query,"crt:",certificates);
+        return;
+      }
+      console.log("query:",query,"crt:",certificates);
+
+         //This method will you filter records used_id
+      if (user !== "") {
+        const newCertificates = certificates.filter((el) => el.user_id === user );
+        setCertificates(newCertificates);
+        // setUserCertificates(newAllCertificates);
+        setUser(user);
+        console.log("user:",user,"crt:",certificates);
+        
+        return;
+        
+      }
+      
+      
   }
-  }
+
     getCertificates();
   
     return;
-  }, [certificates.length,query] );
+  }, [certificates.length, query, user] );
   
   // This method will delete a record
     async function deleteCertificate(id) {
@@ -83,10 +107,17 @@ export default function CertificateList() {
   // This following section will display the table with the records of individuals.
   return (
     <div>
+      <div className="d-flex row">
+      <input type="text" id="user"
+       value={user}
+       placeholder="user_id filter: type value"
+       onChange={e => setUser(e.target.value)}
+      ></input>
       <h3>List of certificates</h3>
+      </div>
       <input type="text" id="query"
        value={query}
-       placeholder="filter: type value"
+       placeholder="user filter: type value"
        onChange={e => setFilter(e.target.value)}
       ></input>
       <button onClick={e => setFilter("")}>Clean</button>
@@ -94,7 +125,7 @@ export default function CertificateList() {
         <thead>
           <tr>
             {/* <th>{t('Certificate ID')}</th> */}
-            {/* <th>{t('User_id')}</th> */}
+            <th>{t('User_id')}</th>
             <th>{t('User_name')}</th>
             <th>{t('CrtStatus')}</th>
             {/* <th>{t('Update')}</th> */}
