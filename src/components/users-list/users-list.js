@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 const User = (props) => (
   
  <tr>
-    {/* <td>{props.record._id}</td> */}
+    <td>{props.record._id}</td>
     <td>{props.record.user_status}</td>
     {/* <td>{props.record.user_update}</td> */}
     <td>{props.record.access_group}</td>
@@ -106,7 +106,7 @@ export default function RecordList() {
       <table  style={{ marginTop: 20}}>
         <thead>
           <tr>
-            {/* <th>{t('User ID')}</th> */}
+            <th>{t('User ID')}</th>
             <th>{t('Status')}</th>
             {/* <th>{t('Date active')}</th> */}
             <th>{t('Group')}</th>

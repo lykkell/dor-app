@@ -40,6 +40,7 @@ recordRoutes.route("/record/:id").get(function (req, res) {
 recordRoutes.route("/record/add").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myobj = {
+ 
   user_status: req.body.user_status,
   access_group: req.body.access_group,
   access_level: req.body.access_level,
@@ -65,6 +66,7 @@ recordRoutes.route("/update/:id").post(function (req, response) {
  let myquery = { _id: ObjectId( req.params.id )}; 
  let newvalues = {   
    $set: {   
+    _id:req.body._id,
     user_status: req.body.user_status,
     access_group: req.body.access_group,
     access_level: req.body.access_level,
