@@ -34,9 +34,10 @@ export default function CertificateList() {
   const [certificates, setCertificates] = useState([]);
    //This is state of certificate filter by user_id
    const [user, setUser] = useState("");
+    //This is state of certificate filter by crt_status
+    const [status, setStatus] = useState("active");
   //This is state of certificate filter by user query text/numbers
   const [query, setFilter] = useState("");
- 
   
   // This method fetches the records from the database.
   useEffect(() => {
@@ -49,37 +50,40 @@ export default function CertificateList() {
         return;
       }
       const certificates = await response.json();
-      setCertificates(certificates);
-      console.log("query:",query,"crt:",certificates);
-      console.log("user:",user,"crt:",certificates);
-      //This method will you filter records includes text/nubers of query
-      if (user !== "" || query !== "") {
+      setCertificates(certificates)
+      
+
+      console.log(certificates);
+      console.log("user:",user,"query:",query, "status:",status,certificates);
+      
+      
+      //This method will you filter records by user_id & by user query
+      if (query === "" & user !== "") {
         const newCertificates = certificates
-        .filter((crtlist) => crtlist.user_id.toLowerCase().includes(user.toLowerCase()))
-        .filter((crtlist) => crtlist.seminar_name.toLowerCase().includes(query.toLowerCase()) || crtlist.user_name.toLowerCase().includes(query.toLowerCase()) || crtlist.crt_points.toLowerCase().includes(query.toLowerCase()) || crtlist.platform_name.toLowerCase().includes(query.toLowerCase()) ||crtlist.crt_status.toLowerCase().includes(query.toLowerCase()));
+        .filter((crtlist) => crtlist.crt_status.toLowerCase() === (status.toLowerCase()))
+        .filter((crtlist) => crtlist.seminar_name.toLowerCase().includes(query.toLowerCase()) || crtlist.user_name.toLowerCase().includes(query.toLowerCase()) || crtlist.crt_points.toLowerCase().includes(query.toLowerCase()) || crtlist.platform_name.toLowerCase().includes(query.toLowerCase()) ||crtlist.crt_status.toLowerCase().includes(query.toLowerCase()))
+        .sort((a,b) => b.crt_points.toLowerCase()-a.crt_points.toLowerCase())
+        .sort((a,b) => b.crt_status.toLowerCase()-a.crt_status.toLowerCase())
+        .filter((crtlist) => crtlist.user_id.toLowerCase() === (user.toLowerCase()));
         setCertificates(newCertificates);
-        setUser(user);
+        // setUser(user);
         return;
       }
-
-      //   else if (query !== "") {
-      //     const newUserCertificates = certificates.filter((crtlist) => crtlist.seminar_name.toLowerCase().includes(query.toLowerCase()) || crtlist.user_name.toLowerCase().includes(query.toLowerCase()) || crtlist.crt_points.toLowerCase().includes(query.toLowerCase()) || crtlist.platform_name.toLowerCase().includes(query.toLowerCase()) ||crtlist.crt_status.toLowerCase().includes(query.toLowerCase()));
-
-      //   console.log("query:",query,"crt:",certificates);
-      //   console.log("user:",user,"crt:",userCertificates);
-        
-      //   setUserCertificates(newUserCertificates);
-      //   setFilter(query);
-      //   return;
-      // }
-      console.log("query:",query,"crt:",certificates);
-
+      else if (query !== "") {
+        const newCertificates = certificates
+        .sort((a,b) => b.crt_points.toLowerCase()-a.crt_points.toLowerCase())
+        .sort((a,b) => b.crt_status.toLowerCase()-a.crt_status.toLowerCase())
+        .filter((crtlist) => crtlist.seminar_name.toLowerCase().includes(query.toLowerCase()) || crtlist.user_name.toLowerCase().includes(query.toLowerCase()) || crtlist.crt_points.toLowerCase().includes(query.toLowerCase()) || crtlist.platform_name.toLowerCase().includes(query.toLowerCase()) ||crtlist.crt_status.toLowerCase().includes(query.toLowerCase()))
+        setCertificates(newCertificates);
+        return;
+      }
+      
+      console.log("user:",user,"query:",query, certificates);
   }
-
     getCertificates();
   
     return;
-  }, [certificates.length, query,user] );
+  }, [certificates.length, query, user, status] );
   
   // This method will delete a record
     async function deleteCertificate(id) {
@@ -116,7 +120,9 @@ export default function CertificateList() {
        placeholder="user filter: type value"
        onChange={e => setFilter(e.target.value)}
       ></input>
-      <button onClick={e => setFilter("")}>Clean</button>
+      <button onClick={e => setFilter("")}>Clean filter</button>
+      <button onClick={e => setStatus("active")}>Show active</button>
+      <button onClick={e => setStatus("deleted")}>Show deleted</button>
       <table  style={{ marginTop: 20}}>
         <thead>
           <tr>
