@@ -20,13 +20,13 @@ const Certificate = (props) => (
     {/* <td>{props.certificate.platform_id}</td> */}
     <td>{props.certificate.platform_name}</td>
    <td>
-     <Link className="btn btn-link" to={`/crtedit/${props.certificate._id}`}>Edit</Link>
+     <Link className="btn btn-link" to={`/crtedit/${props.certificate._id}`}>_Edit</Link>
+     <Link className="btn btn-link" to={`/crtuserlist/${props.certificate.user_id}`}>_User</Link>
      <button className="btn btn-link"
        onClick={() => {props.deleteCertificate(props.certificate._id);}}>Delete</button>
    </td>
  </tr>
 );
-
 
 export default function CertificateList() {
   const { t } = useTranslation();
@@ -34,8 +34,6 @@ export default function CertificateList() {
   const [certificates, setCertificates] = useState([]);
    //This is state of certificate filter by user_id
    const [user, setUser] = useState("");
-   //This is state of certificate list by user_id filter 
-  //  const [userCertificates, setUserCertificates] = useState([]);
   //This is state of certificate filter by user query text/numbers
   const [query, setFilter] = useState("");
  
@@ -52,38 +50,36 @@ export default function CertificateList() {
       }
       const certificates = await response.json();
       setCertificates(certificates);
-
+      console.log("query:",query,"crt:",certificates);
+      console.log("user:",user,"crt:",certificates);
       //This method will you filter records includes text/nubers of query
-      if (query !== "") {
-        const newCertificates = certificates.filter((el) => el.user_id.toLowerCase().includes(query.toLowerCase()) || el.seminar_name.toLowerCase().includes(query.toLowerCase()) || el.crt_points.toLowerCase().includes(query.toLowerCase()) || el.platform_name.toLowerCase().includes(query.toLowerCase()) || el.crt_status.toLowerCase().includes(query.toLowerCase()));
-        
+      if (user !== "" || query !== "") {
+        const newCertificates = certificates
+        .filter((crtlist) => crtlist.user_id.toLowerCase().includes(user.toLowerCase()))
+        .filter((crtlist) => crtlist.seminar_name.toLowerCase().includes(query.toLowerCase()) || crtlist.user_name.toLowerCase().includes(query.toLowerCase()) || crtlist.crt_points.toLowerCase().includes(query.toLowerCase()) || crtlist.platform_name.toLowerCase().includes(query.toLowerCase()) ||crtlist.crt_status.toLowerCase().includes(query.toLowerCase()));
         setCertificates(newCertificates);
-        // setUserCertificates(newUserCertificates);
-        setFilter(query);
-        console.log("query:",query,"crt:",certificates);
+        setUser(user);
         return;
       }
+
+      //   else if (query !== "") {
+      //     const newUserCertificates = certificates.filter((crtlist) => crtlist.seminar_name.toLowerCase().includes(query.toLowerCase()) || crtlist.user_name.toLowerCase().includes(query.toLowerCase()) || crtlist.crt_points.toLowerCase().includes(query.toLowerCase()) || crtlist.platform_name.toLowerCase().includes(query.toLowerCase()) ||crtlist.crt_status.toLowerCase().includes(query.toLowerCase()));
+
+      //   console.log("query:",query,"crt:",certificates);
+      //   console.log("user:",user,"crt:",userCertificates);
+        
+      //   setUserCertificates(newUserCertificates);
+      //   setFilter(query);
+      //   return;
+      // }
       console.log("query:",query,"crt:",certificates);
 
-         //This method will you filter records used_id
-      if (user !== "") {
-        const newCertificates = certificates.filter((el) => el.user_id === user );
-        setCertificates(newCertificates);
-        // setUserCertificates(newAllCertificates);
-        setUser(user);
-        console.log("user:",user,"crt:",certificates);
-        
-        return;
-        
-      }
-      
-      
   }
 
     getCertificates();
   
     return;
-  }, [certificates.length, query, user] );
+  }, [certificates.length, query,user] );
   
   // This method will delete a record
     async function deleteCertificate(id) {

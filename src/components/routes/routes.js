@@ -9,7 +9,8 @@ import Edit from '../user-card/edit-user';
 import UsersList from '../users-list';
 import Access from '../access/access-list';
 import AccessEdit from '../access/access-edit';
-import CrtList from '../crtlist';
+import CrtList from '../crtlist/crt-list';
+// import CrtUserList from '../crtlist/crt-user-list';
 import Certificate from '../certificate';
 import CreateCertificate from '../certificate/create-certificate';
 import EditCertificate from '../certificate/edit-certificate';
@@ -43,6 +44,7 @@ const Rots = () => {
            <Route path="crtcreate" element={<CreateCertificate />} />
            <Route path="crtedit/:id" element={<EditCertificate />} />
            <Route path="crtlist" element={<CrtList />} />
+           {/* <Route path="crtlist/:user_id" element={<CrtUserList />} /> */}
            <Route path="crcommission" element={<CrCommission />} />
            <Route path="crcomlist" element={<CrComList />} />
         </Routes>

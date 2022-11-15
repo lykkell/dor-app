@@ -39,6 +39,17 @@ const ObjectId = require("mongodb").ObjectId;
     });
  });
 
+ // This section will help you get a single record by user_id
+ certificateRoutes.route("/certificate/:user_id").get(function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { user_id: ObjectId( req.params.user_id )};
+  db_connect
+      .collection("certificates")
+      .find(myquery, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+      });
+ });
  // This section will help you get a single record by id
  certificateRoutes.route("/certificate/:id").get(function (req, res) {
   let db_connect = dbo.getDb();

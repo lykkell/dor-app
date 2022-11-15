@@ -41,6 +41,13 @@ const Dashboard = () => {
                         className=" btn btn-primary btn-lg"
                         >{t("Certificates")}
                     </Link>
+                    {/* <Link to={'/crtlist/crt-user-list'}
+                        name='crtuserlist'
+                        type="button"
+                        
+                        className=" btn btn-primary btn-lg"
+                        >{t("UserCertificates")}
+                    </Link> */}
                 </div>
             </div>
         </div>
