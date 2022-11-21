@@ -1,4 +1,4 @@
-const {Schema, model} = require ('mongoose');
+const {Schema, tokenModel} = require ('mongoose');
 
 const TokenSchema = new Schema ({
     user: {type:Schema.Types.ObjectId, ref:'User'},
@@ -6,4 +6,4 @@ const TokenSchema = new Schema ({
    
 });
 
-module.exports = model('Token', TokenSchema);
+module.exports = tokenModel('Token', TokenSchema);
