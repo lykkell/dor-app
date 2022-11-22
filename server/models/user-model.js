@@ -7,4 +7,4 @@ const UserSchema = new Schema ({
     activationLink: {type:String},
 });
 
-module.exports = userModel('User', UserSchema);
+module.exports = userModel('user', UserSchema);
