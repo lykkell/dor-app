@@ -31,7 +31,10 @@ class UserController {
     }
     async activate (req, res, next) {
         try {
-            
+             const activationLink = req.params.link;
+             await userService.activate(activationLink);
+             //you need redirecting activationLink if server and client have different hosts
+             return res.redirect(process.inv.CLIENT_URL); 
         } catch (error) {
             console.log(error);
         }
