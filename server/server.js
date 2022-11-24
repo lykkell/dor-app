@@ -3,6 +3,7 @@ const cors = require("cors");
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const router = require ('./routes/index');
+const errorMiddleware = require ('./middlewares/error-middleware');
 
 require("dotenv").config({ path: "./config.env" });
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use('/api', router);
 app.use(require("./routes/user"));
 app.use(require("./routes/certificate"));
+app.use(errorMiddleware);
 // app.use(require("./routes/_record-access"));
 // get driver connection
 const dbo = require("./db/conn");
